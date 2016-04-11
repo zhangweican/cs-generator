@@ -12,6 +12,11 @@ import com.leweiyou.service.mybatis.entry.${entryName}Example;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 凡是以_开头的Service类，都属于自动生成的类，不提倡在这里添加service方法，请在XXXXService类里加自定义方法。
+ * @author Zhangweican
+ *
+ */
 public abstract class _${entryName}Service{
 
 	@Autowired
