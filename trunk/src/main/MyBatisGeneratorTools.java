@@ -45,5 +45,6 @@ public class MyBatisGeneratorTools {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		System.out.println("生成完毕");
 	}
 }
