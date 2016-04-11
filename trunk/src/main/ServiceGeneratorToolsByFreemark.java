@@ -91,7 +91,7 @@ public class ServiceGeneratorToolsByFreemark {
 				}
 			}
 		}
-		
+		System.out.println("生成完毕");
 	}
 
 
