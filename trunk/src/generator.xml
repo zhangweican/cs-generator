@@ -20,20 +20,30 @@
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 		<!-- 生成模型的包名和位置 -->
-		<javaModelGenerator targetPackage="com.leweiyou.service.mybatis.entry" targetProject="E:\workspace\cs-service\trunk\src\main\java">
+		<javaModelGenerator targetPackage="com.leweiyou.service.mybatis.entry.$" targetProject="E:\workspace\cs-service\trunk\src\main\java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 		<!-- 生成的映射文件包名和位置 -->
-		<sqlMapGenerator targetPackage="com.leweiyou.service.mybatis.mapper" targetProject="E:\workspace\cs-service\trunk\src\main\resources">
+		<sqlMapGenerator targetPackage="com.leweiyou.service.mybatis.mapper.$" targetProject="E:\workspace\cs-service\trunk\src\main\resources">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 		<!-- 生成DAO的包名和位置 -->
-		<javaClientGenerator type="XMLMAPPER" targetPackage="com.leweiyou.service.mybatis.dao" targetProject="E:\workspace\cs-service\trunk\src\main\java">
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.leweiyou.service.mybatis.dao.$" targetProject="E:\workspace\cs-service\trunk\src\main\java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
+		
+		<!-- 
+		<table tableName="sys_menu"/>
+		<table tableName="sys_role" />
+		<table tableName="sys_role_menu" />
+		<table tableName="sys_user" />
+		<table tableName="sys_user_role" />
+		 -->
+		
 		<table tableName="t_user_login" />
 		<table tableName="t_user_copy" />
+		
 	</context>
 </generatorConfiguration>

@@ -1,4 +1,4 @@
-package com.leweiyou.service.service;
+package com.leweiyou.service.service${morePackage};
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -7,11 +7,10 @@ import org.springframework.cache.annotation.Cacheable;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.leweiyou.service.mybatis.dao.${entryName}Mapper;
 
 
-import com.leweiyou.service.mybatis.entry.${entryName};
-import com.leweiyou.service.mybatis.entry.${entryName}Example;
+import com.leweiyou.service.mybatis.dao${morePackage}.*;
+import com.leweiyou.service.mybatis.entry${morePackage}.*;
 import com.leweiyou.service.util.Commons;
 
 import java.util.List;

@@ -33,8 +33,19 @@ public class ServiceGeneratorToolsByFreemark {
 	}
 	  
 	private static void createFile(File file) {
+		String path = file.getParent();
+		String morePath = path.replace(PATH_Entry, "");
+
+		String fullPath = PATH_SERVICE + morePath;
+		
+		String morePackage = morePath.replace("\\", ".");
+		
+		File f = new File(fullPath);
+		if(!f.exists()){
+			f.mkdirs();
+		}
+		
 		String text = txt2String(file);
-		boolean isBasePrimaryKeyClass = true;
 		String primaryKeyClass = "";
 		
 		boolean isExistBLOBs = false;
@@ -42,13 +53,6 @@ public class ServiceGeneratorToolsByFreemark {
 			isExistBLOBs = true;
 		}
 		primaryKeyClass = text.split("deleteByPrimaryKey\\(")[1].split(" ")[0];
-		try {
-			Class.forName("java.lang." + primaryKeyClass);
-			isBasePrimaryKeyClass = true;
-		} catch (ClassNotFoundException e1) {
-			primaryKeyClass = "com.leweiyou.service.mybatis.entry." + primaryKeyClass;
-			isBasePrimaryKeyClass = false;
-		}
 		
 		String entryName = file.getName().replace("Mapper.java", "");
 		String entityNameLowerCase = entryName.substring(0,1).toLowerCase() + entryName.substring(1);
@@ -57,11 +61,11 @@ public class ServiceGeneratorToolsByFreemark {
 		root.put("entryName", entryName);
 		root.put("entityNameLowerCase", entityNameLowerCase);
 		root.put("primaryKeyClass", primaryKeyClass);
-		root.put("isBasePrimaryKeyClass", isBasePrimaryKeyClass + "");
 		root.put("isExistBLOBs", isExistBLOBs + "");
+		root.put("morePackage", morePackage);
 		
 		try {
-			Freemarker.printFile("_Service.ftl", root, PATH_SERVICE, PREX_ABSTRACT + entryName + "Service.java");
+			Freemarker.printFile("_Service.ftl", root, fullPath, PREX_ABSTRACT + entryName + "Service.java");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,13 +73,13 @@ public class ServiceGeneratorToolsByFreemark {
 		
 		
 		//判定继承类是否存在
-		File serviceFile = new File(PATH_SERVICE, entryName + "Service.java");
+		File serviceFile = new File(fullPath, entryName + "Service.java");
 		BufferedWriter bw = null;
 		if(!serviceFile.exists()){
 			try {
 				bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(serviceFile)));
 				String line = "";
-				line += "package com.leweiyou.service.service;\r\n\r\n";
+				line += "package com.leweiyou.service.service" + morePackage + ";\r\n\r\n";
 				line += "import org.springframework.stereotype.Component;\r\n\r\n";
 				line += "@Component\r\n";
 				line += "public class " + entryName + "Service extends " + PREX_ABSTRACT + entryName + "Service{\r\n\r\n";
