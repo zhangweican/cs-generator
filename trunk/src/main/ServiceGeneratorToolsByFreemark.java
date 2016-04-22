@@ -15,8 +15,9 @@ import java.util.Map;
 import utils.Freemarker;
 
 public class ServiceGeneratorToolsByFreemark {
-	private static final String PATH_Entry = "E:\\workspace\\cs-service\\trunk\\src\\main\\java\\com\\leweiyou\\service\\mybatis\\dao";
-	private static final String PATH_SERVICE = "E:\\workspace\\cs-service\\trunk\\src\\main\\java\\com\\leweiyou\\service\\service";
+	private static final String Parent_Package = "com.chinanetcenter.mapper.itop";
+	private static final String PATH_Entry = "E:\\workspace\\cs-mapper-itop\\trunk\\src\\main\\java\\com\\chinanetcenter\\mapper\\itop\\mybatis\\dao";
+	private static final String PATH_SERVICE = "E:\\workspace\\cs-mapper-itop\\trunk\\src\\main\\java\\com\\chinanetcenter\\mapper\\itop\\service";
 	
 	
 	private static final String PREX_ABSTRACT = "_";
@@ -63,6 +64,7 @@ public class ServiceGeneratorToolsByFreemark {
 		root.put("primaryKeyClass", primaryKeyClass);
 		root.put("isExistBLOBs", isExistBLOBs + "");
 		root.put("morePackage", morePackage);
+		root.put("parentPackage", Parent_Package);
 		
 		try {
 			Freemarker.printFile("_Service.ftl", root, fullPath, PREX_ABSTRACT + entryName + "Service.java");
@@ -79,7 +81,7 @@ public class ServiceGeneratorToolsByFreemark {
 			try {
 				bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(serviceFile)));
 				String line = "";
-				line += "package com.leweiyou.service.service" + morePackage + ";\r\n\r\n";
+				line += "package " + Parent_Package + ".service" + morePackage + ";\r\n\r\n";
 				line += "import org.springframework.stereotype.Component;\r\n\r\n";
 				line += "@Component\r\n";
 				line += "public class " + entryName + "Service extends " + PREX_ABSTRACT + entryName + "Service{\r\n\r\n";

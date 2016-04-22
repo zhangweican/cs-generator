@@ -1,4 +1,4 @@
-package com.leweiyou.service.service${morePackage};
+package ${parentPackage}.service${morePackage};
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -9,8 +9,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 
-import com.leweiyou.service.mybatis.dao${morePackage}.*;
-import com.leweiyou.service.mybatis.entry${morePackage}.*;
+import ${parentPackage}.mybatis.dao${morePackage}.*;
+import ${parentPackage}.mybatis.entry${morePackage}.*;
 import com.leweiyou.service.util.Commons;
 
 import java.util.List;
